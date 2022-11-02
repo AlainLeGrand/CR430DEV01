@@ -1,4 +1,4 @@
-param([string] $NewLocalAdminUsername = "",[string] $NewLocalAdminPswd = "", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
+param([string] $NewLocalAdminUsername = "anass",[string] $NewLocalAdminPswd = "Canada@2023Maroc", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
 
 # CIS Microsoft Windows Server 2019 RTM Benchmark
 # You can get the most up to date version in:
@@ -72,7 +72,7 @@ $ExecutionList = @(
     "SystemShutDown", #2.2.46
     #2.2.47 Not Applicable to Member Server
     "TakeOwnershipFiles", #2.2.48
-    #"DisableAdministratorAccount", #2.3.1.1
+    "DisableAdministratorAccount", #2.3.1.1
     "DisableMicrosoftAccounts",    #2.3.1.2
     "DisableGuestAccount",         #2.3.1.3
     "LimitBlankPasswordConsole",   #2.3.1.4
@@ -290,9 +290,9 @@ $ExecutionList = @(
 $AdminAccountName = "Administrator"
 $GuestAccountName = "Guest"
 $NewLocalAdmin = "User"
-if($NewLocalAdminPswd -ne "") {
-    $NewLocalAdminPassword = ConvertTo-SecureString $NewLocalAdminPswd -AsPlainText -Force
-}
+#if($NewLocalAdminPswd -ne "") {
+#    $NewLocalAdminPassword = ConvertTo-SecureString $NewLocalAdminPswd -AsPlainText -Force
+#}
 
 
 #Randomize the new admin and guest accounts on each system.
@@ -2626,37 +2626,6 @@ if(([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::G
     $temp_pass2 = ""
     $invalid_pass = $true
 
-    if($NewLocalAdminUsername -ne "") {
-        if($NewLocalAdminPswd -eq "") {
-            Write-Error "NewLocalAdminUsername set but NewLocalAdminPasswd not set."
-            Write-Error "Please use -NewLocalAdminPassword parameter to set the password!"
-            return
-        } else {
-            if((ValidatePasswords $NewLocalAdminPswd $NewLocalAdminPswd) -eq $False) {
-                Write-Error "NewLocalAdminPassword does not fullfill the minimum security requirements"
-                Write-Info "Your passwords must contain at least 15 characters, capital letters, numbers and symbols"
-                return 1;
-            } else {
-                $temp_pass1 = ConvertTo-SecureString $NewLocalAdminPassword -AsPlainText -Force 
-            }
-        }
-    } else {
-        do {
-            Write-Info "I will create a new Administrator account, you need to specify the new account password."
-            Write-Info "Your password must contain at least 15 characters, capital letters, numbers and symbols"
-            Write-Info "Please enter the new password:"
-            $temp_pass1 = Read-Host
-            Write-Info "Please repeat the new password:"
-            $temp_pass2 = Read-Host 
-            $invalid_pass = ValidatePasswords $temp_pass1 $temp_pass2 
-            if($invalid_pass -eq $false) {
-                Write-Error "Your passwords do not match or do not follow the minimum complexity requirements, try again."
-            } else {
-                $NewLocalAdminPassword = ConvertTo-SecureString $temp_pass1 -AsPlainText -Force 
-            }
-        } while($invalid_pass -eq $false)
-    }
-    
     
 
     if($LegalNoticeMessageFile -ne "") {
