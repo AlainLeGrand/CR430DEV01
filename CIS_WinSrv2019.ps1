@@ -1,4 +1,4 @@
-﻿param([string] $NewLocalAdminUsername = "",[string] $NewLocalAdminPswd = "", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
+param([string] $NewLocalAdminUsername = "",[string] $NewLocalAdminPswd = "", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
 
 # CIS Microsoft Windows Server 2019 RTM Benchmark
 # You can get the most up to date version in:
@@ -72,7 +72,7 @@ $ExecutionList = @(
     "SystemShutDown", #2.2.46
     #2.2.47 Not Applicable to Member Server
     "TakeOwnershipFiles", #2.2.48
-    "DisableAdministratorAccount", #2.3.1.1
+    #"DisableAdministratorAccount", #2.3.1.1
     "DisableMicrosoftAccounts",    #2.3.1.2
     "DisableGuestAccount",         #2.3.1.3
     "LimitBlankPasswordConsole",   #2.3.1.4
