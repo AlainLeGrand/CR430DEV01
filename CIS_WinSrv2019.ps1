@@ -1,4 +1,4 @@
-﻿param([string] $NewLocalAdminUsername = "anass",[string] $NewLocalAdminPswd = "Canada@2023Maroc", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
+﻿param([string] $NewLocalAdminUsername = "",[string] $NewLocalAdminPswd = "", [string] $LegalNoticeMessageFile = "", [string] $ExecutionListFile = "")
 
 # CIS Microsoft Windows Server 2019 RTM Benchmark
 # You can get the most up to date version in:
