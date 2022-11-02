@@ -12,7 +12,7 @@ Write-Host "Updating firewall..."
 netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986
 New-Item -Path 'C:\Script\' -ItemType Directory
 # Source file location
-$source = 'https://raw.githubusercontent.com/Help4InfoCR430/AzureDeploy/main/Anass/CIS_WinSrv2019.ps1'
+$source = 'https://raw.githubusercontent.com/Help4InfoCR430/CR430DEV01/main/CIS_WinSrv2019.ps1'
 # Destination to save the file
 $destination = 'c:\script\CIS_WinSrv2019.ps1'
 #Download the file
